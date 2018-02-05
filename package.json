@@ -1,0 +1,27 @@
+{
+  "name": "programacion_imperactiva",
+  "version": "1.0.0",
+  "description": "Programa para los programas solicitados para la programación imperactiva",
+  "main": "app.js",
+  "scripts": {
+    "test": "debbug\u001b[D\u001b[\u001b[C\u001b[Cug"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikolas9702/programacion-imperativa.git"
+  },
+  "author": "Dilan Gonzalez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nikolas9702/programacion-imperativa/issues"
+  },
+  "homepage": "https://github.com/nikolas9702/programacion-imperativa#readme",
+  "dependencies": {
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "webpack": "^3.10.0"
+  }
+}
