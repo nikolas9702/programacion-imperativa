@@ -1,0 +1,13 @@
+.Nav__link {
+	text-decoration: none;
+	text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+	color: #9d9d9d;
+}
+.Nav__link:hover {
+	text-decoration: none;
+	color: #fff;
+}
+
+body {
+	font-family: 'Indie Flower', cursive;
+}
