@@ -11,10 +11,10 @@ class Footer extends Component {
     };
 
 	render() {
-		const {copyright = 'niko 1997' } = this.props;
+		const {copyright = 'Niko 1997' } = this.props;
 		return (
 			<div className="Footer">
-				<p>Copitygth no comies a la super gentae</p>
+				<p>Copyright.. No a la pirateria </p>
 				<p>{copyright}</p>
 			</div>
 		);
