@@ -12,5 +12,6 @@ class Home  extends Component {
 		);
 	}
 }
+
 // exporto el componente para que se pueda importar en otros componentes
 export default Home 

@@ -1,4 +1,7 @@
+/*se define esilo de la clase content*/
 .Content {
+	/*se define una margen con un tamaño*/
 	margin: 0 auto;
+	/*se define un tamaño para el content*/
 	width: 90%;
 }

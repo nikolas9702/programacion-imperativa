@@ -1,13 +1,22 @@
+/*Se define la clase para el nav link*/
 .Nav__link {
+	/*se oculta el estilo del link*/
 	text-decoration: none;
+	/*se aplica el estilo al texto dandole trasnparencia y color*/
 	text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+	/*se le da color al link*/
 	color: #9d9d9d;
 }
+/*Se define la clase para el nav link hover */
 .Nav__link:hover {
+	/*se oculta el estilo del link*/
 	text-decoration: none;
+	/*se le da color al link*/
 	color: #fff;
 }
 
+/*Se define la clase para el body */
 body {
+	/*se aplica estilo a la fuente del programa*/
 	font-family: 'Indie Flower', cursive;
 }
