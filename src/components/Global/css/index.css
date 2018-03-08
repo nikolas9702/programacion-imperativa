@@ -1,5 +1,9 @@
+/*estilo que aplica a todo el cuepor del proyecto*/
 body {
+	/*se aplican unas margenes de 0*/
 	margin: 0;
+	/*se aplica un relleno de 0*/
 	padding: 0;
+	/*se aplica la fuente de sans-serif*/
 	font-family: sans-serif;
 }

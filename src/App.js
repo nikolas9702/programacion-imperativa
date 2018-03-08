@@ -1,7 +1,7 @@
 // Se cargan los componentes de react
 import React, { Component } from 'react';
 // se cargan los estilos para app.css
-import './App.css';
+// import './App.css';
 // se cargan el componentes Footer por default carga el index
 import Footer from '../src/components/Global/Footer';
 // se cargan el componentes Header por default carga el index

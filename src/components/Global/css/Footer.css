@@ -1,5 +1,9 @@
+/*Se de*/
 .Footer {
+	/*se define el tamaño de la margen */
 	margin: 0 auto;
+	/*se aline el texto*/
 	text-align: center;
+	/*se define el tamaño de footer*/
 	width: 99%;
 }

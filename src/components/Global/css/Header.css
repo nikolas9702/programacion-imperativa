@@ -1,38 +1,60 @@
-
+/*se define la clase logo*/
 .logo {
+  /*se llama infininatamente a keygrames  para el movimiento*/
   animation: App-logo-spin infinite 20s linear;
+  /*se define una altura */
   height: 80px;
 }
-
+/*se define un estilo de header */
 .Header {
+  /*se da un fondo al fondo */
   background-color: #222;
+  /*se define la altura del header*/
   height: 190px;
+  /*se define el relleno de 20 px*/
   padding: 20px;
+  /*se define el color del fondo*/
   color: white;
+  /*se alinea el texto se centra*/
   text-align: center;
 }
 
+/*fragmes para llegar una trasnformacion*/
 @keyframes App-logo-spin {
+  /*se mueve la imagen o grados */
   from { transform: rotate(0deg); }
+  /*se mueve a 360 grados */
   to { transform: rotate(360deg); }
 }
-
-
+/*se define las clases para el menu */
 .Menu {
+  /*se define la margen en 0*/
 	margin:  0;
+  /*se da el relleno en vacio*/
 	padding: 0;
+  /*se elimina el estilo de la lista*/
 	list-style: none;
 }
 
+/*dentro del menu se busca el elemento li */
 .Menu li {
+  /*se ocultan las lineas */
   display: inline-block;
+  /*se define el relleno para el bloque derecho en 10 pixeles*/
   padding-right: 10px;
 }
 
+/*dentro del menu se busca el elemento li a */
 .Menu li a {
+  /*se da el color al link*/
   color: #CCC;
+  /*se elimina a la decoracion por defecto de los link*/
   text-decoration: none;
 }
+
+/*dentro del menu se busca el elemento li a:hover; */
+/*hover cuando se pasa el mouse*/
 .Menu li a:hover {
+  /*se cambia el color cuando pasa por ensicma del vinculo*/
 	color: #EEE;
 }
