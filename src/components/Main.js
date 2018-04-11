@@ -8,6 +8,8 @@ import About from "../components/About/";
 import Home from "../components/Home/";
 // se cargan el componentes Circuito por default carga el index
 import Circuito from "../components/Circuito/";
+// se cargan el componentes Convercion por default carga el index
+import Convercion from "../components/Convercion/";
 // se cargan los estilos para main.css
 import '../components/Main.css';
 // se cargan los cmponentes de react bootstrap
@@ -38,7 +40,7 @@ const Main = () => (
 			</NavItem>
 			<NavItem eventKey={1} >
 			   {/*Se define la ruta que va a redirigir este en especifico*/}
-			  <Link to="/circuito" className="Nav__link">Conversor</Link>
+			  <Link to="/convercion" className="Nav__link">Conversor</Link>
 			</NavItem>
 			</Nav>
 		</Navbar.Collapse>
@@ -50,6 +52,8 @@ const Main = () => (
       <Route path="/about" component={About} />
   		{/*se llama al componente de Circuito*/}
       <Route path="/circuito" component={Circuito} />
+      	{/*se llama al componente de Convercion*/}
+      <Route path="/convercion" component={Convercion} />
     </div>
   </Router>
 );
