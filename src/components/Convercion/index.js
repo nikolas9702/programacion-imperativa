@@ -1,8 +1,9 @@
 // Se cargan los vcomponentes de react
 import React , { Component } from 'react';
 // se cargan los cmponentes de react bootstrap
-import {  Grid , Row , Col , Well ,Button , FormControl , FormGroup , ControlLabel } from 'react-bootstrap';
+import {  Grid , Row , Col , Well ,Button , FormControl , FormGroup , ControlLabel , formControlsSelect  } from 'react-bootstrap';
 // Se define la clase Convercion esta estiende del component de react
+import PasoA from './PasoABinario';
 class Convercion  extends Component {
 	/**
 	 * [constructor Se crea el contrutor del componente]
@@ -32,21 +33,52 @@ class Convercion  extends Component {
 
 	handlechanged (e) {
 		if (e.target.id === 'entrada') {
-			this.setState ({valorIngresado:e.target.value});
+			this.setState ({valorIngresado:Number(e.target.value)});
+			this.setState ({valor : ''});
 		}
 		else if (e.target.id === 'salida') {
-			this.setState ({valorFinal:e.target.value});
+			this.setState ({valorFinal:Number(e.target.value)});
 		}
 		else if (e.target.id === 'valorCambiar') {
-			this.setState ({valor:e.target.value});
+			this.setState ({valor:
+				 (this.state.valorIngresado == 2 ) ? this.validarRangos(e.target.value, 2) :
+				 	(this.state.valorIngresado == 8 ) ? this.validarRangos(e.target.value, 8) :
+				 		(this.state.valorIngresado == 10) ? this.validarRangos(e.target.value, 10) : this.validarHexadecimal(e.target.value) 
+			});
 		}
 	}
 
 	procesarConverciones () {
 		//  Se define la variables que van a almacenar los cambios en la variable segun el circuito
-		
-		this.setState ({resultado: parseInt(this.state.valor, this.state.valorIngresado).toString(this.state.valorFinal)});
+		// this.setState ({resultado: parseInt(this.state.valor, this.state.valorIngresado).toString(this.state.valorFinal)});
 
+		this.setState ({resultado:new PasoA(this.state.valor,this.state.valorIngresado).pasar(this.state.valorFinal)});
+	}
+
+	validarHexadecimal (valor) {
+		var textoFiltrado = "";
+		for(var i in valor) {
+			if (valor[i] >= 0  && valor[i] <= 9)
+				textoFiltrado += valor[i];
+			else if ( valor[i] === 'A' || valor[i] === 'B' || valor[i] === 'C' || valor[i] === 'D' || valor[i] === 'E' || valor[i] === 'F' ) {
+				textoFiltrado += valor[i];
+			}
+		}
+		return textoFiltrado;
+	}
+
+	validarRangos (valor , base) {
+		var textoFiltrado = "";
+		for(var i in valor) {
+			if (base == 2 && ( valor[i]>= 0 && valor[i] <= 1))
+				textoFiltrado += valor[i];
+			else if (base == 8 && ( valor[i]>= 0 && valor[i] <= 7)) 
+				textoFiltrado += valor[i];
+			else if (base == 10 && ( valor[i]>= 0 && valor[i] <= 9)) 
+				textoFiltrado += valor[i];
+
+		}
+		return textoFiltrado;
 	}
 
 	/**
@@ -64,13 +96,12 @@ class Convercion  extends Component {
 					<Row className="show-grid">
 
 						<Col xs={12} md={4}>
-							<FormGroup controlId="formControlsSelect">
+							<FormGroup >
 								<h1>Tipo de entrada</h1>
-								<FormControl componentClass="select" placeholder="select" id="entrada" onChange={this.handlechanged}>
-									<option value="">Selleciones</option>
+								<FormControl componentClass="select" placeholder="Seleccione" id="entrada" onChange={this.handlechanged}>
 									<option value="2">Binario</option>
 									<option value="8">Octal</option>
-									<option value="10" selected="selected">Decimal</option>
+									<option value="10" >Decimal</option>
 									<option value="16">Hexadecimal</option>
 								</FormControl>
 							</FormGroup>
@@ -78,11 +109,10 @@ class Convercion  extends Component {
 						
 						<Col xs={12} md={2}> </Col>
 						<Col xs={12} md={4}>
-							<FormGroup controlId="formControlsSelect">
+							<FormGroup >
 								<h1>Tipo de salida</h1>
-								<FormControl componentClass="select" placeholder="select" id="salida" onChange={this.handlechanged}>
-									<option value="">Selleciones</option>
-									<option value="2" selected="selected">Binario</option>
+								<FormControl componentClass="select" placeholder="Seleccione" id="salida" onChange={this.handlechanged}>
+									<option value="2" >Binario</option>
 									<option value="8">Octal</option>
 									<option value="10">Decimal</option>
 									<option value="16">Hexadecimal</option>
@@ -103,7 +133,7 @@ class Convercion  extends Component {
 					<Row className="show-grid">
 						<Col xs={12} md={11}>
 							{/*Se adiciona un elemento en el cual se va a mostrar el resultado del procedimiento*/}
-							<center> <h1 > Resultado Circuito : {this.state.resultado}</h1> </center>
+							<center> <h1 > Resultado Conversion : {this.state.resultado}</h1> </center>
 						</Col>
 					</Row>
 					{/*Se aplican los estilos y se dan tamaños para la adaptabilidad a dispositivos mobiles */}
