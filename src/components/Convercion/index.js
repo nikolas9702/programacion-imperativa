@@ -31,19 +31,31 @@ class Convercion  extends Component {
 		this.procesarConverciones()
 	}
 
+	// evento para almacenar los datos selecionados
 	handlechanged (e) {
+		// se valida que sea entrada 
 		if (e.target.id === 'entrada') {
+			// se almacena el tipo de dato que ingresa
 			this.setState ({valorIngresado:Number(e.target.value)});
+			// se setea el valor para que no queden valor de otros tipos de datos
 			this.setState ({valor : ''});
 		}
+		//se valida el valor en el cual va ha salir
 		else if (e.target.id === 'salida') {
+			// se almacena el tipo de dato que va ha salir
 			this.setState ({valorFinal:Number(e.target.value)});
 		}
+		// se almacena el valor segun el tipo de ingreso
 		else if (e.target.id === 'valorCambiar') {
+			// se validan las opciones segum el tipo de dato que se debe almacenar 
 			this.setState ({valor:
+				// se realiza un valiadcion in line anidad para validarlos en secuencia
+				// se valida los datos binario
 				 (this.state.valorIngresado == 2 ) ? this.validarRangos(e.target.value, 2) :
+				 // se validan los datos octales
 				 	(this.state.valorIngresado == 8 ) ? this.validarRangos(e.target.value, 8) :
-				 		(this.state.valorIngresado == 10) ? this.validarRangos(e.target.value, 10) : this.validarHexadecimal(e.target.value) 
+				 	// se validan los datos decimales
+				 		(this.state.valorIngresado == 10) ? this.validarRangos(e.target.value, 10) : this.validarHexadecimal(e.target.value) // se validan los hexadecimales
 			});
 		}
 	}
@@ -55,29 +67,48 @@ class Convercion  extends Component {
 		this.setState ({resultado:new PasoA(this.state.valor,this.state.valorIngresado).pasar(this.state.valorFinal)});
 	}
 
+	/**
+	 * @param  {valor es el digitado por el usuario}
+	 * @return {se retorna el contenido del texto}
+	 */
 	validarHexadecimal (valor) {
+		//variable de acumulacion del texto
 		var textoFiltrado = "";
+		// ciclo para leer el string por partes
 		for(var i in valor) {
+			// se valida que se un numero
 			if (valor[i] >= 0  && valor[i] <= 9)
 				textoFiltrado += valor[i];
+			// se valida que tenga solo las letras A a F
 			else if ( valor[i] === 'A' || valor[i] === 'B' || valor[i] === 'C' || valor[i] === 'D' || valor[i] === 'E' || valor[i] === 'F' ) {
 				textoFiltrado += valor[i];
 			}
 		}
+		// se retorna el contenido del texto
 		return textoFiltrado;
 	}
 
+	/**
+	 * @param  {[string] valor => el input suministrado por el usuario}
+	 * @param  {[integer] base => la base en la cual se va ha validar}
+	 * @return {[string] el contenido validado}
+	 */
 	validarRangos (valor , base) {
+		// ciclo para leer el string por partes
 		var textoFiltrado = "";
+		// ciclo para leer el string por partes
 		for(var i in valor) {
+			// se valida que se un numero de 0 a 1
 			if (base == 2 && ( valor[i]>= 0 && valor[i] <= 1))
 				textoFiltrado += valor[i];
+			// se valida que se un numero de 0 a 7
 			else if (base == 8 && ( valor[i]>= 0 && valor[i] <= 7)) 
 				textoFiltrado += valor[i];
+			// se valida que se un numero de 0 a 9
 			else if (base == 10 && ( valor[i]>= 0 && valor[i] <= 9)) 
 				textoFiltrado += valor[i];
-
 		}
+		// se retorna el contenido del texto
 		return textoFiltrado;
 	}
 
@@ -94,10 +125,12 @@ class Convercion  extends Component {
 				<Grid>
 					{/*Se aplican los estilos y se dan tamaños para la adaptabilidad a dispositivos mobiles */}
 					<Row className="show-grid">
-
+						{/*se crea la columa para la lista de entrada*/}
 						<Col xs={12} md={4}>
 							<FormGroup >
+								{/*se crea el titulo*/}
 								<h1>Tipo de entrada</h1>
+								{/*se define la lista con las opciones  */}
 								<FormControl componentClass="select" placeholder="Seleccione" id="entrada" onChange={this.handlechanged}>
 									<option value="2">Binario</option>
 									<option value="8">Octal</option>
@@ -108,9 +141,12 @@ class Convercion  extends Component {
 						</Col>
 						
 						<Col xs={12} md={2}> </Col>
+						{/*se crea la columa para la lista de entrada*/}
 						<Col xs={12} md={4}>
 							<FormGroup >
+								{/*se crea el titulo*/}
 								<h1>Tipo de salida</h1>
+								{/*se define la lista con las opciones  */}
 								<FormControl componentClass="select" placeholder="Seleccione" id="salida" onChange={this.handlechanged}>
 									<option value="2" >Binario</option>
 									<option value="8">Octal</option>
