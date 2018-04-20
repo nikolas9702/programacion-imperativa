@@ -17,6 +17,7 @@ class Convercion  extends Component {
 			valorIngresado : 2 , //se degine el valor de valorIngresado en cero por defecto
 			valorFinal : 10 , //se degine el valor de valorFinal en cero por defecto
 			valor : "111" ,
+			sumadelbinario : 0 ,
 		};
 		// se instancian los eventos del clikc del boton
 		this.handleCountClick = this.handleCountClick.bind(this);
@@ -65,6 +66,9 @@ class Convercion  extends Component {
 		// this.setState ({resultado: parseInt(this.state.valor, this.state.valorIngresado).toString(this.state.valorFinal)});
 
 		this.setState ({resultado:new PasoA(this.state.valor,this.state.valorIngresado).pasar(this.state.valorFinal)});
+		var num = new PasoA(this.state.valor,this.state.valorIngresado).pasar(10);
+		var suma = num+num ;
+		this.setState ({sumadelbinario:new PasoA(suma,10).pasar(2)});
 	}
 
 	/**
@@ -161,7 +165,7 @@ class Convercion  extends Component {
 							<FormGroup controlId="valorCambiar">
 								{/*Se muestra el titulo para adicionar el valor de a*/}
 								<ControlLabel>Valor</ControlLabel>{' '}
-								<FormControl type="text" placeholder="Jane Doe" value={this.state.valor} onChange={this.handlechanged}  />
+								<FormControl type="text" placeholder="Numero" value={this.state.valor} onChange={this.handlechanged}  />
 							</FormGroup>
 						</Col>
 					</Row>
@@ -170,6 +174,10 @@ class Convercion  extends Component {
 						<Col xs={12} md={11}>
 							{/*Se adiciona un elemento en el cual se va a mostrar el resultado del procedimiento*/}
 							<center> <h1 > Resultado Conversion : {this.state.resultado}</h1> </center>
+						</Col>
+						<Col xs={12} md={11}>
+							{/*Se adiciona un elemento en el cual se va a mostrar el resultado del procedimiento*/}
+							<center> <h1 > Suma Binarios : {this.state.sumadelbinario}</h1> </center>
 						</Col>
 					</Row>
 					{/*Se aplican los estilos y se dan tamaños para la adaptabilidad a dispositivos mobiles */}

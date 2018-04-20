@@ -76,7 +76,7 @@ class PasoABinario extends Component {
 		// auxiliar para el ultimo valor que pasa
 		var ultimoValor = 0;
 		// ciclo para el cual carga los binarios necesitados
-		for (var i = 1; ultimoValor < Number(decimal) ; i++) {
+		for (var i = 0; ultimoValor < Number(decimal) ; i++) {
 			// se agrega al arreglo arreglo binario
 			arregloBinario.push(Math.pow(2,i));
 			// se guarda el ultimo valor del arreglo par la validacion del ciclo
@@ -103,9 +103,10 @@ class PasoABinario extends Component {
 				valorbinario += 0;
 			}
 			// se define el binario final
-			decimalBinario += valorbinario;
-			// en el ultimo valor de o y 1 de valida si estos deben i en el valor de meor relevacia
-			decimalBinario += (cantidad_valor == 1 || cantidad_valor == 0) ? cantidad_valor : "" ;
+			decimalBinario = (decimalBinario == '0' ) ? valorbinario : decimalBinario+valorbinario ;
+			// decimalBinario += ( cantidad_valor != 0 ) ? valorbinario : '';
+			// // en el ultimo valor de o y 1 de valida si estos deben i en el valor de meor relevacia
+			// decimalBinario += ( cantidad_valor == 1 || cantidad_valor == 0) ? cantidad_valor : "" ;
 		}
 		// se retorna el binario del octal asignado
 		return decimalBinario;
