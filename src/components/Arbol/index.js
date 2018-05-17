@@ -20,11 +20,12 @@ class Arbol  extends Component {
 			resultadopostorden: "",
 			resultadopreorden: ""
 		};
+		this.jerarquia = ['/','^','*','+','-'];
 		// se instancian los eventos del clikc del boton
 		this.handleCountClick = this.handleCountClick.bind(this);
 		// se instancia el evento para almacenar los valores que se van digitanto 
 		this.handlechanged = this.handlechanged.bind(this);
-
+		var conta = 0;
 		var arbol = null;
 	}
 
@@ -40,43 +41,37 @@ class Arbol  extends Component {
 		var formulatmp = formula;
 		var intermedio = 0;
 		var palabra = [];
-		for (var j = 0; j < jerarquia.length-1 ; j++) {
-			for (var i = 0; i < formulatmp.length ; i++) {
-				if (jerarquia[j] == formulatmp[i]) {
-					console.log(formulatmp.slice(i,i+1));
-					if (formulatmp.length != 1) {
-						this.validacionesRecorrerAdicionar(formulatmp.slice(i,i+1) , 0);
-						this.recorreJerarquia (formulatmp.slice(i,i+1));
-						formulatmp = formulatmp.slice(i,i+1);
-					}
-					console.log(formulatmp.length);
-					console.log(formulatmp.slice(0,(i)))
-					if (formulatmp.slice(0,(i)).length != 1) {
-						this.validacionesRecorrerAdicionar(formulatmp.slice(0,(i)) , 0);
-						this.recorreJerarquia (formulatmp.slice(0,(i)));
-						formulatmp = formulatmp.slice(0,(i));
-					}
-					console.log(formulatmp.slice((i+1),(formulatmp.length)))
-					if (formulatmp.slice((i+1),(formulatmp.length)).length != 1) {
-						this.validacionesRecorrerAdicionar(formulatmp.slice((i+1),(formulatmp.length)) , 1);
-						this.recorreJerarquia (formulatmp.slice((i+1),(formulatmp.length)));
-						formulatmp = formulatmp.slice((i+1),(formulatmp.length));
-					}
+		for (var i = 0; i < formulatmp.length ; i++) {
+			if ("/" == formulatmp[i]) {
 
-					// this.adicionarNodo(formulatmp.slice(i,i+1) , 0)
-					// palabra.push(formulatmp.slice(0,(i)));
-
-					// this.adicionarNodo(formulatmp.slice(0,(i)) , 0)
-					// //palabra.push(formulatmp.slice(i,i+1));
-					
-					// palabra.push(formulatmp.slice((i+1),(formulatmp.length)));
-					// this.adicionarNodo(formulatmp.slice((i+1),(formulatmp.length)) , 1)
-
-					// formulatmp = formulatmp.slice(0,(i));
+				this.adicionarNodo ( null  , null  , formula );
+				this.adicionarNodo ( formula.slice(0,(i))  , formula.slice(i+1,(formula.length))  , formula );
+				return false;
+				this.leturaBinario ( formula.slice(0,(i)) , formula.slice(i+1,(formula.length))  , formula ) ;
+        		i = 10;
+				/*
+				console.log(formulatmp.slice(i,i+1));
+				if (formulatmp.length != 1) {
+					this.validacionesRecorrerAdicionar(formulatmp.slice(i,i+1) , 0);
+					this.recorreJerarquia (formulatmp.slice(i,i+1));
+					formulatmp = formulatmp.slice(i,i+1);
 				}
+				console.log(formulatmp.length);
+				console.log(formulatmp.slice(0,(i)))
+				if (formulatmp.slice(0,(i)).length != 1) {
+					this.validacionesRecorrerAdicionar(formulatmp.slice(0,(i)) , 0);
+					this.recorreJerarquia (formulatmp.slice(0,(i)));
+					formulatmp = formulatmp.slice(0,(i));
+				}
+				console.log(formulatmp.slice((i+1),(formulatmp.length)))
+				if (formulatmp.slice((i+1),(formulatmp.length)).length != 1) {
+					this.validacionesRecorrerAdicionar(formulatmp.slice((i+1),(formulatmp.length)) , 1);
+					this.recorreJerarquia (formulatmp.slice((i+1),(formulatmp.length)));
+					formulatmp = formulatmp.slice((i+1),(formulatmp.length));
+				}*/
+
 			}
 		}
-		console.log(palabra)
 	}
 
 	/**
@@ -86,34 +81,51 @@ class Arbol  extends Component {
 		// se llama a la funcion circuitovalores para que realice el procesamiento del circuito
 		console.clear();
 		
-		this.recorreJerarquia("((x+2*y)^y)/(4+x-3)");
-		
-
-		// for (var i = 0; i < formula.length ; i++) {
-		// 	for (var j = 0; j < jerarquia.length ; j++) {
-		// 		if (typeof palabra[intermedio] == "undefined") {palabra[intermedio]  = '';}
-		// 		if (formula[i] == jerarquia[j]) {
-		// 			intermedio = 1
-		// 			if (typeof palabra[intermedio] == "undefined") {palabra[intermedio]  = '';}
-		// 			palabra[intermedio] += formula[i];
-		// 			intermedio++;
-		// 		}
-		// 		else {
-		// 			palabra[intermedio] += formula[i];
-		// 		}
-		// 	}
-		// 	console.log(formula[i]);
-		// }
-		// console.log(palabra);
+		//this.recorreJerarquia("((x+2*y)^y)/(4+x-3)");
+		// this.recorreJerarquia("(3^y)/(3*2)");
+		this.recorreJerarquia("(3)/(2)");
 		console.log(this.arbol);
+		//mostrar (arbol) 
 
-		// this.adicionarNodo(this.state.valor)
-		// console.clear();
-		// 
-		//this.mostrar(this.arbol)
-		// this.preOrden (this.arbol);
-		// this.inOrden (this.arbol);
-		// this.postOrden (this.arbol);
+	}
+
+
+	leturaBinario (  izquierda , derecha , padre ) {
+		// if ( typeof izquierda != "undefined" &&  typeof derecha != "undefined"  ) 
+		// 	arre[padre] = {"izq":izquierda , "der": derecha };
+	 //  console.log(arre)
+	  // debugger;
+		var paso  = true;
+	  	console.log( izquierda , derecha, padre);
+		console.log(this.arbol);
+		this.conta++;
+		this.adicionarNodo (izquierda , derecha , padre )
+		if ( typeof izquierda != "undefined" ) {
+			this.letura(  izquierda , padre );
+		}
+		return false;
+
+		if ( typeof derecha != "undefined" ) {
+			this.letura(  derecha , padre );
+		}
+
+	}
+
+	letura (  ruta , padre ) {
+		if ( typeof ruta != "undefined" && this.conta < 20 ) {
+			for (var i = 0 ; i < this.jerarquia.length ; i++ ) {
+				for (var j = 0 ; j < ruta.length ; j++ ) {
+					if (this.jerarquia[i] == ruta[j] && ruta.length > 2) {
+						if (ruta[0] == "(" && ruta[ruta.length-1] == ")" ) {
+							ruta = ruta.replace("(", "").replace(")","");
+						}
+						this.leturaBinario (  ruta.slice(0,(j-1)) , ruta.slice(j,ruta.length) , ruta ) ;
+						i = 10;
+						j = 10;
+					}
+				}
+			}
+		}
 	}
 
 	// evento para almacenar los datos selecionados
@@ -125,27 +137,28 @@ class Arbol  extends Component {
 		}
 	}
 
-	adicionarNodo (valor , rama ) {
+	adicionarNodo (valorDerecha , valorIzquierda , padre ) {
 		//  Se define la variables que van a almacenar los cambios en la variable segun el circuito
 
-		if (this.arbol == null) {
-				this.arbol = new Nodo( valor );
+			if (this.arbol == null) {
+				this.arbol = new Nodo( padre );
 			}
 			else {
 				var aux = this.arbol ;
-				while (aux != null && aux.valor != valor) {
-					if (/*aux.valor > valor*/ rama === 0 ) {
+				while (aux != null && ( aux.valor != valorDerecha || aux.valor != valorIzquierda )  ) {
+					if (/*aux.valor > valor*/ /*rama === 0*/ typeof valorIzquierda != "undefined" ) {
 						if (aux.sigIzquierda == null)  
-							aux.sigIzquierda = new Nodo( valor );
+							aux.sigIzquierda = new Nodo( valorIzquierda );
 						else 
 							aux = aux.sigIzquierda;
 					}
-					else if (/*aux.valor < valor*/  rama === 1 )  {
+					if (/*aux.valor < valor*/  /*rama === 1*/ typeof valorDerecha != "undefined"  )  {
 						if (aux.sigDerecha == null)
-							aux.sigDerecha = new Nodo( valor );
+							aux.sigDerecha = new Nodo( valorDerecha );
 						else 
 							aux = aux.sigDerecha;
 					}
+					console.log(aux);
 				}
 			}
 	}
